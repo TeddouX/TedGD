@@ -2,8 +2,6 @@ import zlib
 import base64
 import os
 import xml.etree.ElementTree as ET
-from xml.dom import minidom
-
 
 SAVE_FILE = "CCLocalLevels.dat"
 SAVE_PATH = os.getenv("localappdata") + "\\GeometryDash\\" + SAVE_FILE
@@ -74,8 +72,6 @@ def overwrite_level(level_name: str, level_string: str) -> None:
                         print(child[level_string_idx].text)
                         child[level_string_idx].text = level_string
                         break
-
-    
 
 def save_backup(level_name: str, data: str):
     os.makedirs(BACKUP_PATH, exist_ok=True)
