@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 
 SAVE_FILE = "CCLocalLevels.dat"
 SAVE_PATH = os.getenv("localappdata") + "\\GeometryDash\\" + SAVE_FILE
+SAVE_PATH_2 = os.getenv("localappdata") + "\\GeometryDash\\" + "CCLocalLevels2.dat"
 
 BACKUP_DIR = "\\Level Backups\\"
 BACKUP_PATH = os.getcwd() + BACKUP_DIR
@@ -17,6 +18,9 @@ def load_save() -> bytes:
     
 def overwrite_save(data: bytes):
     with open(SAVE_PATH, "wb") as f:
+        f.write(data)
+
+    with open(SAVE_PATH_2, "wb") as f:
         f.write(data)
     
 def xor(data: bytes, key: int) -> bytearray:
@@ -89,8 +93,6 @@ def overwrite_level(level_name: str, level_string: str) -> None:
     current_save_str = load_save()
     decrypted = decrypt_save(current_save_str)
     current_save_xml = read_save_xml(decrypted)
-
-    print(ET.tostring(current_save_xml))
     
     level_found = False
     for child in current_save_xml[0][1]:
@@ -109,8 +111,6 @@ def overwrite_level(level_name: str, level_string: str) -> None:
         print(f"There is no level named {level_name}, try creating one.")
         return
     
-    print(ET.tostring(current_save_xml))
-
     xml_string = ET.tostring(current_save_xml)
     encrypted = encrypt_save(xml_string)
     overwrite_save(encrypted)

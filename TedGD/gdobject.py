@@ -11,7 +11,7 @@ class GDObject(UserDict):
     def from_robtop(self, data: str):
         obj = {}
         properties = data.split(',')
-        encoded_pairs = [(int(properties[i]), int(properties[i+1])) for i in range(0, len(properties), 2)]
+        encoded_pairs = [(int(properties[i]), properties[i+1]) for i in range(0, len(properties), 2)]
 
         for k, v in encoded_pairs:
             obj[k] = v
