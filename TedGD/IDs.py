@@ -209,7 +209,7 @@ p: dict[str, int] = {
     'timer_target': 473,
     'timer_stop': 474,
     'timer_multi_active': 475,
-     'item_type_1': 476,
+    'item_type_1': 476,
     'item_type_2': 477,
     'item_type_3': 478,
     'num_mod': 479,

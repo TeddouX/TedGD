@@ -1,5 +1,5 @@
-import TedGD.loadsave as loadsave
-from object import GDObject
+from TedGD import loadsave
+from TedGD.gdobject import GDObject
 
 DEFAULT_LEVEL_HEAD = "kS38,1_40_2_125_3_255_11_255_12_255_13_255_4_-1_6_1000_7_1_15_1_18_0_8_1|1_0_2_102_3_255_11_255_12_255_13_255_4_-1_6_1001_7_1_15_1_18_0_8_1|1_0_2_102_3_255_11_255_12_255_13_255_4_-1_6_1009_7_1_15_1_18_0_8_1|1_255_2_255_3_255_11_255_12_255_13_255_4_-1_6_1002_5_1_7_1_15_1_18_0_8_1|1_40_2_125_3_255_11_255_12_255_13_255_4_-1_6_1013_7_1_15_1_18_0_8_1|1_40_2_125_3_255_11_255_12_255_13_255_4_-1_6_1014_7_1_15_1_18_0_8_1|1_125_2_255_3_0_11_255_12_255_13_255_4_-1_6_1005_5_1_7_1_15_1_18_0_8_1|1_0_2_255_3_255_11_255_12_255_13_255_4_-1_6_1006_5_1_7_1_15_1_18_0_8_1|,kA13,0,kA15,0,kA16,0,kA14,,kA6,0,kA7,0,kA25,0,kA17,0,kA18,0,kS39,0,kA2,0,kA3,0,kA8,0,kA4,0,kA9,0,kA10,0,kA22,0,kA23,0,kA24,0,kA27,1,kA40,1,kA41,1,kA42,1,kA28,0,kA29,0,kA31,1,kA32,1,kA36,0,kA43,0,kA44,0,kA45,1,kA33,1,kA34,1,kA35,0,kA37,1,kA38,1,kA39,1,kA19,0,kA26,0,kA20,0,kA21,0,kA11,0"
 
@@ -30,7 +30,7 @@ class Editor:
         if level_head == None:
             raise Exception("The level can't be found. Check the level's name spelling.")
         
-        objects = [GDObject.from_robtop(i) for i in object_strings[:-1]]
+        objects = [GDObject.from_robtop(i) for i in object_strings]
 
         return Editor(level_name, level_head, objects)
 
@@ -44,16 +44,26 @@ class Editor:
 
         return Editor(level_name, saved[0], objects)
     
-    def to_robtop(self) -> None:
+    def to_backup(self) -> str:
         robtop_objects = [i.to_robtop() for i in self.objects]
         robtop_str = self.level_head + "$" + ';'.join(robtop_objects)
 
         return robtop_str
+    
+    def to_robtop(self) -> str:
+        return self.to_backup().replace("$", ";")
+    
+    def overwrite_gd_level(self) -> None:
+        robtop_str = self.to_robtop()
+        loadsave.overwrite_level(self.level_name, robtop_str)
 
     def backup(self) -> None:
-        loadsave.save_backup(self.level_name, self.to_robtop())
+        loadsave.save_backup(self.level_name, self.to_backup())
 
     def add_object(self, object: GDObject) -> None:
         if type(object) != GDObject: raise Exception("Cannot add an object that isn't of type \"GDObject\"")
 
         self.objects.append(object)
+
+    def remove_all_objects(self) -> None:
+        self.objects = []

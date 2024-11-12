@@ -1,7 +1,7 @@
 from collections import UserDict
 
 class GDObject(UserDict):
-    def __init__(self, properties: dict[int, int]) -> None:
+    def __init__(self, properties: dict[int, int] = {}) -> None:
         super().__init__({1:1, 2:0, 3:0, 155:1})
         
         for k, v in properties.items():
