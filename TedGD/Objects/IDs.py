@@ -1,0 +1,3 @@
+o: dict[str, int] = {
+
+}
