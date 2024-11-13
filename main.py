@@ -1,9 +1,9 @@
 from TedGD import editor, gdobject
-from TedGD.IDs import p
+from TedGD.Properties import properties
+from TedGD.Properties.IDs import p
 
 def main() -> None:
     gd_editor = editor.Editor.load_level("AABB")
-    print(gd_editor.objects)
     gd_editor.remove_all_objects()
     gd_editor.overwrite_gd_level()
 
