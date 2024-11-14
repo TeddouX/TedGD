@@ -1,14 +1,14 @@
 
 # Documentation
 
- - [Editor](##Editor)
- - [GDObject](##GDObject)
- - [PropertiesID](##PropertiesID)
- - [Triggers](##Triggers)
-   - [Move](###Move)
-   - [Color](###Color)
-   - [Spawn](###Spawn)
-   - [Create Spawn Loop](###create-spawn-loop)
+ - [Editor](#Editor)
+ - [GDObject](#GDObject)
+ - [PropertiesID](#PropertiesID)
+ - [Triggers](#Triggers)
+   - [Move](#Move)
+   - [Color](#Color)
+   - [Spawn](#Spawn)
+   - [Create Spawn Loop](#create-spawn-loop)
 
 
 ## Editor
