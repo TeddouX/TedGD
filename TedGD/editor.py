@@ -10,9 +10,13 @@ def align_to_grid(gris_pos: int) -> int:
 
 class Editor:
     def __init__(self, level_name: str, level_head: str, objects: list[str]) -> None:
-        self.level_name = level_name
-        self.level_head = level_head
+        self.__level_name = level_name
+        self.__level_head = level_head
         self.objects: list[GDObject] = objects
+
+    @property
+    def level_name(self):
+        return self.__level_name
 
     @classmethod
     def load_empty(self, level_name: str):
@@ -49,26 +53,26 @@ class Editor:
 
         return Editor(level_name, saved[0], objects)
     
-    def to_backup(self) -> str:
+    def __to_backup(self) -> str:
         robtop_objects = [i.to_robtop() for i in self.objects]
-        robtop_str = self.level_head + "$" + ';'.join(robtop_objects)
+        robtop_str = self.__level_head + "$" + ';'.join(robtop_objects)
 
         return robtop_str
     
-    def to_robtop(self) -> str:
-        return self.to_backup().replace("$", ";")
+    def __to_robtop(self) -> str:
+        return self.__to_backup().replace("$", ";")
     
     def overwrite_gd_level(self) -> None:
-        robtop_str = self.to_robtop()
-        loadsave.overwrite_level(self.level_name, robtop_str)
+        robtop_str = self.__to_robtop()
+        loadsave.overwrite_level(self.__level_name, robtop_str)
 
     def backup(self) -> None:
-        loadsave.save_backup(self.level_name, self.to_backup())
+        loadsave.save_backup(self.__level_name, self.__to_backup())
 
     def add_object(self, object: GDObject) -> None:
         self.objects.append(object)
     
-    def add_objects(self, *objects) -> None:
+    def add_objects(self, *objects: GDObject) -> None:
         self.objects += list(objects)
 
     def remove_all_objects(self) -> None:

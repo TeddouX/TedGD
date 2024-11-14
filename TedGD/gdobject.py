@@ -30,7 +30,7 @@ class GDObject(UserDict):
     def set_property(self, prop: int, val) -> None:
         self[prop] = val
 
-    def get_property(self, prop: int) -> str:
+    def get_property(self, prop: int):
         return self[prop]
     
     def add_groups(self, groups: list[int]) -> None:

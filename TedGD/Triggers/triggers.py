@@ -29,7 +29,7 @@ def move_trigger(pos_x: int = -15, pos_y: int = 15,
                       propertiesID.DURATION: round(duration, 2),
                       propertiesID.TARGET: target_group,
                       propertiesID.LOCK_TO_PLAYER_X: int(lock_to_player_x), propertiesID.LOCK_TO_PLAYER_Y: int(lock_to_player_y),
-                      propertiesID.X_MOD: x_mod, propertiesID.Y_MOD: y_mod,
+                      propertiesID.X_MOD: round(x_mod, 3), propertiesID.Y_MOD: round(y_mod, 3),
                       propertiesID.SPAWN_TRIGGERED: int(spawn_triggered), propertiesID.MULTI_TRIGGER: int(spawn_triggered) })
 
 def color_trigger(pos_x: int = -15, pos_y: int = 15, 
@@ -51,22 +51,22 @@ def color_trigger(pos_x: int = -15, pos_y: int = 15,
 
 def spawn_trigger(pos_x: int = -15, pos_y: int = 15,
                   target_group: int = 0,
-                  spawn_triggered: bool = False,
                   spawn_duration: float = 0, spawn_duration_variance: float = 0, 
-                  spawn_ordered: bool = False) -> GDObject:
+                  spawn_ordered: bool = False,
+                  spawn_triggered: bool = False) -> GDObject:
     
     return GDObject({ propertiesID.ID: ID["spawn"],
                       propertiesID.X: pos_x, propertiesID.Y: pos_y,
                       propertiesID.TARGET: target_group,
-                      propertiesID.SPAWN_TRIGGERED: int(spawn_triggered), propertiesID.MULTI_TRIGGER: int(spawn_triggered),
                       propertiesID.SPAWN_DURATION: round(spawn_duration, 4), propertiesID.VARIANCE: round(spawn_duration_variance, 4),
-                      propertiesID.SPAWN_ORDERED: int(spawn_ordered) })
+                      propertiesID.SPAWN_ORDERED: int(spawn_ordered),
+                      propertiesID.SPAWN_TRIGGERED: int(spawn_triggered), propertiesID.MULTI_TRIGGER: int(spawn_triggered) })
 
-def create_spawn_loop(editor: Editor, target_group: int = 0, 
+def create_spawn_loop(editor: Editor, target_group: int, 
                       pos_x: int = -15, pos_y: int = 15,
+                      spawn_duration: float = 0,
                       spawn_ordered: bool = False, spawn_triggered: bool = False,
-                      spawn_group: int = 0,
-                      spawn_duration: float = 0) -> None:
+                      spawn_group: int = 0 ) -> None:
     
     used_groups = editor.get_all_groups()
     objects = editor.get_objects_with_group(target_group)
