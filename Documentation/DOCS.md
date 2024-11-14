@@ -12,7 +12,6 @@
 
 
 ## Editor
-Can be imported from `TedGD.editor`
 ### Creation
 The Editor needs to be created from a method:
 ```python
