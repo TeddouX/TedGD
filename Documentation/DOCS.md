@@ -12,6 +12,7 @@
 
 
 ## Editor
+Can be imported from `TedGD.editor`
 ### Creation
 The Editor needs to be created from a method:
 ```python
@@ -106,8 +107,6 @@ propertiesID.Y # The y position of an object
 ```
 
 ## Triggers
-Can be imported from `TedGD.Triggers`.
-
 ### Move
 Can be imported from `TedGD.Triggers.triggers`. 
 
