@@ -1,3 +1,0 @@
-o: dict[str, int] = {
-
-}
