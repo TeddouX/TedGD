@@ -25,11 +25,11 @@ Each of these methods takes an argument `level_name: str` and will return a `Ted
 ### Methods
 `overwrite_gd_level()` used to overwrite the Geometry Dash level with the name that was passed in the constructor  
 `backup()` used to backup all the objects into a backup file  
-`add_object(object: GDObject)` add an [object](##GDObject) to the editor  
-`add_objects(*objects: GDObject)` add multiple [objects](##GDObject) to the editor  
+`add_object(object: GDObject)` add an [object](#GDObject) to the editor  
+`add_objects(*objects: GDObject)` add multiple [objects](#GDObject) to the editor  
 `remove_all_objects()` remove all objects from the editor  
 `get_all_groups() -> list[int]` returns a list of all used groups  
-`get_objects_with_group(group: int) -> list[GDObject]` returns a list of all [GDObjects](##GDObject) with the group
+`get_objects_with_group(group: int) -> list[GDObject]` returns a list of all [GDObjects](#GDObject) with the group
 
 ### Variables
 `level_name: str` your level's name  
@@ -57,19 +57,19 @@ gd_editor.overwrite_gd_level()
 Can be imported from `TedGD.gdobject`
 
 ### Creation
-Can be created with the default constructor `GDObject(properties_: dict[int,])` where `properties_` is a dict of [properties](##PropertiesID) associated with their value.
+Can be created with the default constructor `GDObject(properties_: dict[int,])` where `properties_` is a dict of [properties](#PropertiesID) associated with their value.
 
 #### Usage
 ```python
 # Create a GDObject
 my_object = GDObject({ propertiesID.X: 15, propertiesID.Y: 15 })
 ```
-The `propertiesID.ID` is by default 1. For more information about the propertiesID can be found here: [propertiesID](##PropertiesID)
+The `propertiesID.ID` is by default 1. For more information about the propertiesID can be found here: [propertiesID](#PropertiesID)
 
 ### Methods 
 `from_robtop() -> GDObject` creates a `GDObject` from a RobTop properties string  
-`set_property(prop: int, val: Any)` sets a [property](##PropertiesID) from the object   
-`get_property(prop: int) -> Any` returns a [property](##PropertiesID) from the object
+`set_property(prop: int, val: Any)` sets a [property](#PropertiesID) from the object   
+`get_property(prop: int) -> Any` returns a [property](#PropertiesID) from the object
 `add_groups(groups: list[int])` adds all groups from the list to the object's groups
 `add_group(group: int)` adds the group to the object's add_groups
 `get_groups() -> list[int]` returns all the object's groups
@@ -97,7 +97,7 @@ gd_editor.overwrite_gd_level()
 
 ## PropertiesID
 Can be imported from `TedGD.properties`.  
-Contains a list of all the properties' IDs. Used for the creation of [GDObjects](##GDObject). A list of all these properties can be found here: [propertiesID.py](../TedGD/Properties/propertiesID.py) 
+Contains a list of all the properties' IDs. Used for the creation of [GDObjects](#GDObject). A list of all these properties can be found here: [propertiesID.py](../TedGD/Properties/propertiesID.py) 
 
 #### Usage
 ```python
