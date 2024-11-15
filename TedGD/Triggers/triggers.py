@@ -4,10 +4,35 @@ from TedGD.editor import Editor, align_to_grid
 from TedGD.Properties import propertiesID
 from TedGD.Triggers.color import RGB
 
+EASE_IN_OUT = 1
+EASE_IN = 2
+EASE_OUT = 3
+ELASTIC_IN_OUT = 4
+ELASTIC_IN = 5
+ELASTIC_OUT = 6
+BOUNCE_IN_OUT = 7
+BOUNCE_IN = 8
+BOUNCE_OUT = 9
+EXPONENTIAL_IN_OUT = 10
+EXPONENTIAL_IN = 11
+EXPONENTIAL_OUT = 12
+SINE_IN_OUT = 13
+SINE_IN = 14
+SINE_OUT = 15
+BACK_IN_OUT = 16
+BACK_IN = 17
+BACK_OUT = 18
+
+STOP_TRIGGER_STOP = 0
+STOP_TRIGGER_PAUSE = 1
+STOP_TRIGGER_RESUME = 2
+
 ID: dict[str, int] = {
     "move": 901,
     "color": 899,
-    "spawn": 1268
+    "toggle": 1049,
+    "spawn": 1268,
+    "stop": 1616
 }
 
 def get_smallest_not_in_list(l: list[int]):
@@ -62,6 +87,28 @@ def spawn_trigger(pos_x: int = -15, pos_y: int = 15,
                       propertiesID.SPAWN_ORDERED: int(spawn_ordered),
                       propertiesID.SPAWN_TRIGGERED: int(spawn_triggered), propertiesID.MULTI_TRIGGER: int(spawn_triggered) })
 
+def toggle_trigger(pos_x: int = -15, pos_y: int = 15,
+                   target_group: int = 0,
+                   activate_group: bool = False,
+                   spawn_triggered: bool = False) -> GDObject:
+    
+    return GDObject({ propertiesID.ID: ID["toggle"],
+                      propertiesID.X: pos_x, propertiesID.Y: pos_y,
+                      propertiesID.TARGET: target_group,
+                      propertiesID.ACTIVATE_GROUP: int(activate_group),
+                      propertiesID.SPAWN_TRIGGERED: int(spawn_triggered) })
+
+def stop_trigger(pos_x: int = -15, pos_y: int = 15,
+                 target_group: int = 0,
+                 stop_trigger_type: int = 0,
+                 spawn_triggered: bool = False) -> GDObject:
+
+    return GDObject({ propertiesID.ID: ID["stop"],
+                      propertiesID.X: pos_x, propertiesID.Y: pos_y,
+                      propertiesID.TARGET: target_group,
+                      propertiesID.STOP_TRIGGER_TYPE: stop_trigger_type,
+                      propertiesID.SPAWN_TRIGGERED: bool(spawn_triggered) })
+
 def create_spawn_loop(editor: Editor, target_group: int, 
                       pos_x: int = -15, pos_y: int = 15,
                       spawn_duration: float = 0,
@@ -92,5 +139,4 @@ def create_spawn_loop(editor: Editor, target_group: int,
     third_trigger.add_group(spawn_group)      
     
     editor.add_objects(first_trigger, second_trigger, third_trigger)       
-    
     
