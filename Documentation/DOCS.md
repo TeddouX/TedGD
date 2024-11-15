@@ -117,7 +117,11 @@ Can be imported from `TedGD.Triggers.triggers`.
 - `pos_y: int` the y position of the trigger.  
 - `move_x: int` the x movement of the object.   
 - `move_y: int` the y movement of the object.  
+<<<<<<< HEAD
 - `easing: int` the easing of the object (can be imported from `TedGD.Triggers.triggers`).
+=======
+- `easing: int` the easing of the object (can be imported from `TedGD.Triggers.easings`). A detailed list can be found here: [easings.py](../TedGD/Triggers/easings.py).  
+>>>>>>> e16e24a000ef442d0a5fac0b0c7c0f86da0a0e0e
 - `easing_rate: float` (*rounded to 0.01*) the easing rate.  
 - `duration: float` (*rounded to 0.01*) the duration of the movement.  
 - `target_group: int` the group that will be affected by the movement.  
