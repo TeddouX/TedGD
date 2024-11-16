@@ -1,5 +1,5 @@
 from collections import UserDict
-from TedGD.Properties import properties, propertiesID
+from TedGD import properties, propertiesID
 
 DEFAULT_BLOCK = 1
 COLORABLE_BLOCK = 211

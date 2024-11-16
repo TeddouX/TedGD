@@ -1,3 +1,4 @@
+from itertools import count, filterfalse
 from TedGD import loadsave
 from TedGD.gdobject import GDObject
 
@@ -7,6 +8,8 @@ def align_to_grid(gris_pos: int) -> int:
     gris_pos *= 2
     return gris_pos * 15 - 15
 
+def get_smallest_not_in_list(l: list[int]):
+    return next(filterfalse(set(l).__contains__, count(1)))
 
 class Editor:
     def __init__(self, level_name: str, level_head: str, objects: list[str]) -> None:
@@ -86,6 +89,10 @@ class Editor:
 
         return list(groups)
             
+    def get_smallest_unused_group(self) -> int:
+        used_groups = self.get_all_groups()
+        return get_smallest_not_in_list(used_groups)
+    
     def get_objects_with_group(self, group: int) -> list[GDObject]:
         objects: list[GDObject] = []
         for obj in self.objects:

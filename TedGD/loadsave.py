@@ -6,7 +6,6 @@ import xml.etree.ElementTree as ET
 
 SAVE_FILE = "CCLocalLevels.dat"
 SAVE_PATH = os.getenv("localappdata") + "\\GeometryDash\\" + SAVE_FILE
-SAVE_PATH_2 = os.getenv("localappdata") + "\\GeometryDash\\" + "CCLocalLevels2.dat"
 
 BACKUP_DIR = "\\Level Backups\\"
 BACKUP_PATH = os.getcwd() + BACKUP_DIR
@@ -18,9 +17,6 @@ def load_save() -> bytes:
     
 def overwrite_save(data: bytes):
     with open(SAVE_PATH, "wb") as f:
-        f.write(data)
-
-    with open(SAVE_PATH_2, "wb") as f:
         f.write(data)
     
 def xor(data: bytes, key: int) -> bytearray:
